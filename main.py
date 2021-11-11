@@ -16,10 +16,6 @@ def list_races(response):
         response_json = response.json()
         names = [i.get('name') for i in response_json ]
         view.start(names)
-        # id = response_json[0].get('_id')
-        # description = response_json[0].get('description')
-        # roles = response_json[0].get('roles')
-        # dictionary = { 'name ' : name, 'id ' : id, 'description ' : description, 'roles' : roles}
 
 
 

@@ -2,7 +2,6 @@ from tkinter import font,Label,Button,Entry, Tk
 import tkinter as tk
 
 from race_information import run
-from functools import partial
 
 # search : str
 names : str
@@ -17,7 +16,7 @@ def connect_back(search):
 
 def start(names):
     root = Tk()
-    root.title('Obtener videos')
+    root.title('Buscar razas')
     root.geometry('1250x500')
 
     label_titulo = Label(root,width=40,height=1,text='Razas',font=font.Font(size=15)).place(x=350,y=180)

@@ -1,7 +1,7 @@
-import logging
 import requests
 import threading
 from concurrent.futures import Future
+import view_information
 
 
 
@@ -15,12 +15,21 @@ def run(search):
 
 
 
-def show_race(response, search):
+def show_race(response, search) :
     if response.status_code == 200:
         print(search)
         response_json = response.json()
-        names = [i.get('name') for i in response_json if i.get('name').lower() == search.lower()]
-        print(f'La raza es {names}')
+        for i in response_json:
+            if i.get('name').lower() == search.lower():
+                name = i.get('name')
+                id_race = i.get('_id')
+                description = i.get('description')
+                roles = i.get('roles')
+                url_image = i.get('femaleImg')
+                view_information.show_image(url_image)
+                view_information.start(name, id_race, description, roles)
+                break
+        
 
 
 
