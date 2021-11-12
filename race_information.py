@@ -8,7 +8,7 @@ import view_information
 
 
 
-def run(search):
+def run(search : str) -> None:
     
     future = generate_request('https://fr.dofus.dofapi.fr/classes')
     future.add_done_callback(
@@ -18,22 +18,28 @@ def run(search):
 
 
 
-def show_race(response, search) :
+def show_race(response : any, search : str) -> None:
     if response.status_code == 200:
         
-        response_json = response.json()
+        response_json : dict = response.json()
+        
         for i in response_json:
+            
             if i.get('name').lower() == search.lower():
-                name = i.get('name')
-                id_race = i.get('_id')
-                description = i.get('description')
-                roles = i.get('roles')
-                url_image = i.get('femaleImg')
+                #Information
+                name : str        = i.get('name')
+                id_race : str     = i.get('_id')
+                description : str = i.get('description')
+                roles : str       = i.get('roles')
+                url_image : str   = i.get('femaleImg')
                 
                 #THREAD
-                image = threading.Thread(target=view_information.show_image, args=(url_image, ))
+                image :  threading      = threading.Thread(
+                    target=view_information.show_image,
+                    args=(url_image, )
+                )
                 
-                information = threading.Thread(
+                information : threading = threading.Thread(
                     target=view_information.start,
                     args=(
                         name, 

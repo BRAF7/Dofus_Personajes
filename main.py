@@ -4,7 +4,7 @@ import view
 
 
 
-def list_races(response):
+def list_races(response) -> None:
     
     if response.status_code == 200:
         response_json = response.json()
@@ -16,7 +16,7 @@ def list_races(response):
 
 if __name__ == '__main__':
     
-    future = generate_request('https://fr.dofus.dofapi.fr/classes')
+    future : any = generate_request('https://fr.dofus.dofapi.fr/classes')
     future.add_done_callback(
         lambda future: list_races(future.result())
     )
