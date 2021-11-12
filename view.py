@@ -7,6 +7,8 @@ from race_information import run
 names : str
 
 def connect_back(search):
+    #Tkinter automatically convert everything you put in str
+    assert search != str, "search must be a string"
     search_lower = search.lower()
     print(search)
     run(search_lower)

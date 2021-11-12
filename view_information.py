@@ -6,11 +6,15 @@ import PIL
 from PIL import Image
 from io import BytesIO
 
-
+#Show the image of the race
 def show_image(url_image):
     try:
+        print('Cargando imagen...')
+        #get response
         response = req.get(url_image)
+        #convert bytes to image
         image = Image.open(BytesIO(response.content))
+        #show image
         image.show()
     except PIL.UnidentifiedImageError: 
         print('Image not available')
@@ -18,8 +22,10 @@ def show_image(url_image):
 
 
 
-
+#Show information
 def start(name, id_race, description, roles):
+    
+    print('Trabajando hilo...')
     root = Tk()
     root.title(name)
     root.geometry('500x500')
