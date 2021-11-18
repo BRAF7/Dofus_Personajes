@@ -4,7 +4,9 @@ from concurrent.futures import Future
 #MODULE
 from request_API import generate_request
 import view_information
-
+#Google trans
+from googletrans import Translator
+translator = Translator()
 
 
 
@@ -32,7 +34,15 @@ def show_race(response : any, search : str) -> None:
                 description : str = i.get('description')
                 roles : str       = i.get('roles')
                 url_image : str   = i.get('femaleImg')
+                print(type(roles), roles)
+                translation_description = translator.translate(description, dest='es')
+                for i in range(len(roles)):
+                    pos = i-1
+                    translation_roles = translator.translate(roles[pos],dest='es')
+                    roles[pos] = translation_roles.text               
+                description = translation_description.text
                 
+
                 #THREAD
                 image :  threading      = threading.Thread(
                     target=view_information.show_image,
